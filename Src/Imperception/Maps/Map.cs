@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 
-#nullable disable
+
 namespace GameManager.Maps
 {
   internal class Map

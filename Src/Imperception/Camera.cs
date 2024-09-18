@@ -3,7 +3,7 @@
 using GameManager.Sprites;
 using Microsoft.Xna.Framework;
 
-#nullable disable
+
 namespace GameManager
 {
   internal class Camera

@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 
-#nullable disable
+
 namespace GameManager.Sprites
 {
   public class Monster : Sprite
@@ -142,7 +142,8 @@ namespace GameManager.Sprites
       }
       else
       {
-        if (!this.SharesRoomWithPlayer && this.KnowsWherePlayerIs || this.SharesRoomWithPlayer || this.KnowsWherePlayerIs)
+        if (!this.SharesRoomWithPlayer && this.KnowsWherePlayerIs 
+                    || this.SharesRoomWithPlayer || this.KnowsWherePlayerIs)
           return;
         if (this.walkingDirection == Monster.WalkingDirection.Left)
         {

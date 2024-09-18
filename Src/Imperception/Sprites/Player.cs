@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 using System.Diagnostics;
 
-#nullable disable
+
 namespace GameManager.Sprites
 {
   public class Player : Sprite
@@ -88,19 +88,32 @@ namespace GameManager.Sprites
       });
     }
 
-    public void Update(GameTime gameTime, KeyboardState key)
+    public void Update(GameTime gameTime, 
+        KeyboardState keyboardState,
+        GamePadState gamePadState)
     {
-      if (Game1.gameState == Game1.GameState.Active && Player.playerAction == Player.PlayerAction.Normal)
+      if 
+      (
+          Game1.gameState == Game1.GameState.Active 
+          && Player.playerAction == Player.PlayerAction.Normal
+      )
       {
         // if A (Left) or D (Right) key up then stop walking
-        if ( key.IsKeyUp(Keys.A) || key.IsKeyUp(Keys.D) || key.IsKeyUp(Keys.Left) || key.IsKeyUp(Keys.Right))
+        if 
+        ( keyboardState.IsKeyUp(Keys.A) || keyboardState.IsKeyUp(Keys.D) 
+          || keyboardState.IsKeyUp(Keys.Left) || keyboardState.IsKeyUp(Keys.Right))
         {
           this.vel.X = 0.0f;
           this.isWalking = false;
         }
 
         // if key A (Left) pressed then go walking left
-        if ( key.IsKeyDown(Keys.A) || key.IsKeyDown(Keys.Left) )
+        if 
+        (
+           gamePadState.IsButtonDown(Buttons.DPadLeft) ||
+           keyboardState.IsKeyDown(Keys.A) 
+           || keyboardState.IsKeyDown(Keys.Left) 
+        )
         {
           this.facingDirection = Player.FacingDirection.Left;
           this.vel.X = -1.3f;
@@ -108,7 +121,12 @@ namespace GameManager.Sprites
         }
 
         // // if key D (Right) pressed then go walking left
-        if ( key.IsKeyDown(Keys.D) || key.IsKeyDown(Keys.Right) )
+        if 
+        (
+            gamePadState.IsButtonDown(Buttons.DPadRight) ||
+            keyboardState.IsKeyDown(Keys.D)
+            || keyboardState.IsKeyDown(Keys.Right) 
+        )
         {
           this.facingDirection = Player.FacingDirection.Right;
           this.vel.X = 1.3f;
@@ -117,15 +135,15 @@ namespace GameManager.Sprites
 
         this.WalkingAnimation();
 
-                if (key.IsKeyDown(Keys.S))
-                {
-                    Debug.WriteLine("[i] S key is down (pressed)");
-                }
+        if (keyboardState.IsKeyDown(Keys.S))
+        {
+            Debug.WriteLine("[i] S key is down (pressed)");
+        }
                 
-                if (key.IsKeyDown(Keys.W))
-                {
-                    Debug.WriteLine("[i] W key is down (pressed)");
-                }
+        if (keyboardState.IsKeyDown(Keys.W))
+        {
+            Debug.WriteLine("[i] W key is down (pressed)");
+        }
       }//if 
 
       --this.actionKeyInterval;
@@ -136,17 +154,22 @@ namespace GameManager.Sprites
                     : this.texActionKeyTwo;
 
         //RnD
-        this.actionKeyInterval = 3;//40;
+        this.actionKeyInterval = 40; //40
       }
 
       // if Key E down (pressed)...
       if ( Player.playerAction == Player.PlayerAction.Hiding
-                && key.IsKeyDown(Keys.E)
+                && 
+                (
+                 keyboardState.IsKeyDown(Keys.E)
+                 ||
+                 gamePadState.IsButtonDown(Buttons.B)
+                 )
                 && this.cooldownBeforeExitingHidingSpot < 0 
                 && this.actionKeyWasReleased )
       {
         //RnD
-        this.cooldownBeforeCanUseHidingSpot = 2;//30;
+        this.cooldownBeforeCanUseHidingSpot = 30;//30
 
         this.showHidingLocation = false;
         this.hidingSpotLabelTranslation = 0.0f;
@@ -155,7 +178,7 @@ namespace GameManager.Sprites
         Player.playerAction = Player.PlayerAction.Normal;
       }
 
-      if (key.IsKeyUp(Keys.E))
+      if (keyboardState.IsKeyUp(Keys.E))
       {
         this.actionKeyWasReleased = true;
       }
@@ -325,7 +348,7 @@ namespace GameManager.Sprites
 
 
 
-        public enum FacingDirection
+    public enum FacingDirection
     {
       Left,
       Right,

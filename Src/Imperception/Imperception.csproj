@@ -18,11 +18,11 @@
     <EnableDotNetNativeCompatibleProfile>true</EnableDotNetNativeCompatibleProfile>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <PackageCertificateKeyFile>P22-Imperception_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateKeyFile>Imperception_TemporaryKey.pfx</PackageCertificateKeyFile>
     <LangVersion>latest</LangVersion>
     <RuntimeIdentifiers>win10-arm;win10-arm-aot;win10-x86;win10-x86-aot;win10-x64;win10-x64-aot</RuntimeIdentifiers>
     <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
-    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
     <AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
     <AppxBundle>Never</AppxBundle>
     <AppxBundlePlatforms>arm</AppxBundlePlatforms>
@@ -116,11 +116,13 @@
     <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Accelerometer.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Camera.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="Level.cs" />
     <Compile Include="Maps\Map.cs" />
     <Compile Include="ScreenManager.cs" />
     <Compile Include="Sprites\GameObject.cs" />
@@ -135,6 +137,8 @@
     </Compile>
     <Compile Include="Glob.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TouchCollectionExtensions.cs" />
+    <Compile Include="VirtualGamePad.cs" />
     <Compile Include="_Managers\GameManager.cs" />
     <Compile Include="_Managers\InputManager.cs" />
     <Compile Include="_Managers\Pathfinder.cs" />
@@ -177,10 +181,10 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
-      <Version>6.2.8</Version>
+      <Version>6.0.8</Version>
     </PackageReference>
     <PackageReference Include="MonoGame.Framework.WindowsUniversal">
-      <Version>3.8.0.1641</Version>
+      <Version>3.7.1.189</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>13.0.3</Version>
@@ -281,6 +285,10 @@
     <Content Include="Content\spritefont.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Sprites\VirtualControlArrow.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Imperception_TemporaryKey.pfx" />
     <None Include="P22-Imperception_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup />

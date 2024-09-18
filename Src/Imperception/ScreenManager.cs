@@ -10,7 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 
-#nullable disable
+
 namespace GameManager
 {
   public class ScreenManager
@@ -155,7 +155,8 @@ namespace GameManager
     {
       this.posBlackScreenOnBlood.X += 50f;
       //Console.WriteLine((object) this.posBlackScreenOnBlood);
-      Debug.WriteLine("[i] InitiateGameOver, posBlackScreenOnBlood = : " + this.posBlackScreenOnBlood.X);
+      Debug.WriteLine("[i] InitiateGameOver, posBlackScreenOnBlood = : " 
+          + this.posBlackScreenOnBlood.X);
     }
   }
 }
